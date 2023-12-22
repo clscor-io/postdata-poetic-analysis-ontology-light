@@ -1,0 +1,464 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> a owl:Ontology ;
+    rdfs:label "Postdata Poetic Analysis [light version]" .
+
+# Classes
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#LiteraryDevice> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> ;
+    rdfs:label "Literary Device" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# NOTES: This might be better captured by E55 Types? How to connect this to CIDOC? Conceptual Object? There is no super-class in the original Ontology
+#CHANGES: We make this a subClassOf Conceptual Object
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#StructuralUnit> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object> ;
+    rdfs:label "Structural Unit" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# ORIGINAL:
+#:StructuralUnit rdf:type owl:Class ;
+ #               rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-core#LinguisticObject> ;
+                
+#CHANGES:
+# We make it a subClassOf CIDOC E33 Lingugistic Object and remove the equivalent class pdc:Linguistic Object
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#AnalyticalUnit>  a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> ;
+    rdfs:label "Analytical Unit" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# NOTES: this is underdefined in the Ontology; difference between AnalyticalUnit and BasicAnalyticalUnit is unclear
+#: What is the superClass of Analytical Unit?? Can either be Linguistic Object and/or Conceptual Object; need examples!
+
+#CHANGES: We join AnalyticalUnit and BasicAnalyticalUnit
+# ORIGINAL:
+#:BasicAnalyticalUnit rdf:type owl:Class ;
+#                     rdfs:subClassOf :AnalyticalUnit ;
+#                     rdfs:label "Basic Analytical Unit"@en .
+
+#:AnalyticalUnit rdf:type owl:Class ;
+#                rdfs:label "Analytical Unit"@en .
+
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Enjambment> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#LiteraryDevice> ;
+    rdfs:label "Enjambment" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#GrammaticalSyllableList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Grammatical Syllable List" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Line> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#StructuralUnit> ;
+    rdfs:label "Line" ;
+    rdfs:comment """A line is a subdivision of a poem, specifically a group of words arranged into a row that ends with a line break. Although the word for a single poetic line is verse, that term now tends to be used to signify poetic form more generally. A line break is the termination of the line of a poem and the beginning of a new line. Eg.: “As armas e os barões assinalados” - from Os Lusíadas""" ;
+    rdfs:seeAlso "https://en.wikipedia.org/wiki/Line_(poetry)" , "https://poetryarchive.org/glossary/line/" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#GrammaticalSyllable> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#AnalyticalUnit> ;
+    rdfs:label "Grammatical Syllable" ;
+    rdfs:comment """A single unit of speech sound as written or spoken; specifically, a vowel preceded by zero to three consonants (“awl,” “bring,” “strand”), and followed by zero to four consonants (“too,” “brag,” “gloss,” “stings,” “sixths”). This class corresponds to the definition of grammatical syllables that in some literary traditions like French poetry and Sanskrit determines the metre of basic rythmic structure of a Line. Eg.: The word ignite is composed of two syllables: ig and nite.""" ;
+    rdfs:seeAlso "https://en.wikipedia.org/wiki/Syllable" , "https://www.poetryfoundation.org/learn/glossary-terms/syllable" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#MetricalSyllable> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#AnalyticalUnit> ;
+    rdfs:label "Metrical Syllable" ;
+    rdfs:comment "Metric syllable built by applying metaplasms to syllables." ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# CHANGES: Made this a subClassOf AnalyticalUnit b/c removed BasicAnalyticalUnit as in Original Ontology
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#PunctuationList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Punctuation List";
+    rdfs:comment "This class represents an ordered list of punctuations that may appear in a Line." ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Rhyme> a owl:Class ;
+    rdfs:comment "Repetition of similar sounding words occurring at the end of lines in poems or songs" ;
+    rdfs:label "Rhyme" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+#TODO: need to find suitable Superclass; maybe we could say that Rhyme is a literary device?
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#RhymeMatch> a owl:Class ;
+    rdfs:label "RhymeMatch" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+#TODO: need to find suitable Superclass; this is an observation?
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Scansion> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Scansion" ;
+    rdfs:comment "Event scansion is performed by some agent (person or computer software) taking a redaction as input and generates a set of lists and patterns for the elements of analysis considered." ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We would consider the "scansion" a subClassOf an crm: E73 Information Object in the context of CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#StanzaList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Stanza List" ;
+    rdfs:comment "A Stanza List is an ordered list of slots of type Stanza that is used to represent the contents of a Redaction. Any Redaction has a Stanza List composed by a minimum of one Stanza." ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#ScansionProcess> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
+    rdfs:label "Scansion Process" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# ORIGINAL:
+#:ScansionProcess rdf:type owl:Class ;
+#    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-core#Event> ;
+
+# NOTES:
+# We consider the ScansionProcess an E7 Activity (CIDOC) in CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Stanza> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#StructuralUnit> ;
+    rdfs:label "Stanza" ;
+    rdfs:comment """A grouping of lines separated from others in a poem. In modern free verse, the stanza, like a prose paragraph, can be used to mark a shift in mood, time, or thought""" ;
+    rdfs:seeAlso "https://www.poetryfoundation.org/learn/glossary-terms/stanza" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+
+# ORIGINAL:
+#rdfs:subClassOf :StructuralUnit ,
+#                        <http://purl.org/ontology/olo/core#Slot> ,
+#                        owl:Thing ,
+
+# CHANGES:
+# removed restriction
+###  http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Stanza
+
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#LineList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Line List" ;
+    rdfs:comment "A Line List is an ordered list of slots of type Line that is used to represent the contents of a Redaction. Any Redaction has a Line List composed by a minimum of one Line." ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#MetricalSyllableList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Metrical Syllable List" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#Word> a owl:Class ;
+    rdfs:subClassOf <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#StructuralUnit> ;
+    rdfs:label "Word" ;
+    rdfs:comment """The smallest symbol or set of symbols that are used to form lexical units. Words are used with others (or sometimes alone) to form a sentence.""" ;
+    rdfs:seeAlso "https://en.wikipedia.org/wiki/Lexical_item" , "https://en.wikipedia.org/wiki/Word" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# CHANGES:
+# removed the restrictions
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#WordList> a owl:Class ;
+    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ;
+    rdfs:label "Word List" ;
+    rdfs:isDefinedBy <http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis> .
+# NOTES:
+# We consider the "lists" an E73 Information Object in CLSCor
+
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+# Have not looked at them (IB)
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#wasInputFor> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#usedAsInput> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#affectsLine> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isDeviceAnnotationOf> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#typeOfEnjambment> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isListAnnotationOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstGrammaticalSyllable> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#grammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isGramamticalSyllableListOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastGrammaticalSyllable> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#analysesWord> a rdf:Property .
+ 
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstGrammaticalSyllableOf> a rdf:Property .
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#grammaticalSyllableList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#grammaticalSyllableNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isGrammaticalSyllableAnalysedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isGrammaticalSyllableOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isStressed> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastGrammaticalSyllableOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextGrammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isFirstGrammaticalSyllableAffectedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousGrammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#absoluteLineNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstLineOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isLineOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lineList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#relativeLineNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#grammaticalStressPattern> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasGrammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasGrammaticalSyllableList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasMetricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasMetricalSyllableList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasWordList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isCallLineIn> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#patterningMetricalScheme> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#presentsRhyme> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasPunctuation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastLineOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isEchoLineIn> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#rhymesWith> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isLineAffectedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#numberOfLines> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#line> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isLineListOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#affectsFirstGrammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#affectsFirstWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#typeOfMetaplasm> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstMetricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isMetricalSyllableListOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastMetricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#metricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#analysesGrammaticalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstMetricalSyllableOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isMetricalSyllableOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#metricalSyllableList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#metricalSyllableNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextMetricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#phoneticTranscription> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousMetricalSyllable> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastMetricalSyllableOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#after> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#before> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isPunctuationOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextPunctuation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#punctuationList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousPunctuation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#punctuation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasRhymeMatch> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isRhymePresentAt> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#rhymeLabel> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasCallLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasCallWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasEchoLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasEchoWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isRhymeMatchOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#rhymeGrapheme> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#typeOfRhymeMatching> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasListAnnotation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasStanzaList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isGeneratedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#typeOfScansion> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasDeviceAnnotation> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#id> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isListAnnotatedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isStanzaListof> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#numberOfStanzas> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#stanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isStanzaListOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#generated> a rdf:Property .
+
+
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#employedTechnique> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasLine> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isStanzaOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#stanzaList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#stanzaNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstStanzaoF> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#hasLineList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#metricalType> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#rhymeScheme> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstStanzaOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#typeOfStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousStanza> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastStanzaOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstWordOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isWordAnalysedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isWordOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#nextWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#wordList> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#wordNumber> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isFirstWordAffectedBy> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#previousWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastWordOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isEchoOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isEchoWordIn> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isCallOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isCallWordIn> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#firstWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#isWordListOf> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#lastWord> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#word> a rdf:Property .
+
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#metaplasmIndex> a rdf:Property .
+
+# Data Properties
+<http://postdata.linhd.uned.es/ontology/postdata-poeticAnalysis#content> a rdf:Property .
